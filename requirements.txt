@@ -3,3 +3,5 @@ chromadb==0.3.23
 llama-cpp-python==0.1.50
 urllib3==2.0.2
 python-dotenv==1.0.0
+pypdf==3.9.1
+unstructured==0.7.6

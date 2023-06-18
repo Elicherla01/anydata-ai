@@ -94,5 +94,5 @@ for file in os.listdir("source_data"):
         source_documents.extend(loader.load())
 
         
-print("I processed",count , "documents2")   
+print("I processed",count , "documents")   
 

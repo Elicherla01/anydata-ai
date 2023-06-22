@@ -1,10 +1,22 @@
 import os
 
+from langchain.chains import RetrievalQA
+from langchain.llms import OpenAI
 from langchain.indexes import VectorstoreIndexCreator
+import gradio as gr
+import time
+
+from langchain.indexes import VectorstoreIndexCreator
+from langchain.vectorstores import FAISS
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.text_splitter import CharacterTextSplitter
+
 
 from langchain.document_loaders import (
     Docx2txtLoader,
+    UnstructuredPDFLoader,
     PyPDFLoader,
+    PyMuPDFLoader,
     TextLoader,
     CSVLoader,
     EverNoteLoader,
@@ -35,7 +47,8 @@ for file in os.listdir("source_data"):
     count += 1
     if file.endswith(".pdf"):
         document_path = "./source_data/" + file
-        loader = PyPDFLoader(document_path)
+        #loader = UnstructuredPDFLoader(document_path)
+        loader = PyMuPDFLoader(document_path)
         source_documents.extend(loader.load())
         
     elif file.endswith('.docx') or file.endswith('.doc'):
@@ -93,6 +106,38 @@ for file in os.listdir("source_data"):
         loader = UnstructuredEmailLoader(document_path)
         source_documents.extend(loader.load())
 
-        
-print("I processed",count , "documents")   
+    
+print("I processed",count , "documents")  
 
+print("source_documents", source_documents)
+
+splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=10)
+chunked_docs = splitter.split_documents(source_documents)
+embedder = OpenAIEmbeddings()
+vector_store = FAISS.from_documents(chunked_docs, embedder)
+print("vector_store:", vector_store)
+
+
+chain = RetrievalQA.from_chain_type(llm=OpenAI(), chain_type="stuff", retriever=vector_store.as_retriever(), input_key="question")
+
+with gr.Blocks() as chatagent:
+    chatbot = gr.Chatbot()
+    msg = gr.Textbox()
+    clear = gr.Button("Clear")
+    history = []
+
+    def user(query, history):
+        print("user_message", query)
+        print("Chat History:", history)
+        # Get response from  chain
+        response = chain.run(query)
+        # Append user message and response to chat history
+        history.append((query, response))
+        time.sleep(1)
+        return "", history
+
+    msg.submit(user, [msg, chatbot], [msg, chatbot])
+    clear.click(lambda: None, None, chatbot, queue=False)
+
+chatagent.launch(debug=True)
+    

@@ -4,4 +4,13 @@ llama-cpp-python==0.1.50
 urllib3==2.0.2
 python-dotenv==1.0.0
 pypdf==3.9.1
+PyMUPDF==1.22.3
 unstructured==0.7.6
+gradio==3.35.2
+openai==0.27.8
+tiktoken==0.4.0
+Cython==0.29.35
+chromadb==0.3.23
+unstructured==0.7.6
+faiss-cpu==1.7.4
+sentence-transformers==2.2.2

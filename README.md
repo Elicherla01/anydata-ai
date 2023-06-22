@@ -5,7 +5,10 @@
 In order to set your environment up to run the code here, first install all requirements:
 
 Step1: Git Clone the code into a folder
+```shell
 git clone https://github.com/Elicherla01/anydata-ai.git
+```
+
 and change directory to anydata-ai
 
 Step2:

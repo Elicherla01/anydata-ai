@@ -4,15 +4,20 @@
 # Environment Setup
 In order to set your environment up to run the code here, first install all requirements:
 
-Step1:
+Step1: Git Clone the code into a folder
+https://github.com/Elicherla01/anydata-ai.git
+and change directory to anydata-ai
+
+Step2:
 ```shell
 pip3 install -r requirements.txt
 ```
-Step2:
+Step3:
 Rename example.env to .env
 
-Step3: In .env file set OPENAI_API_KEY as 
+Step4: In .env file set OPENAI_API_KEY as 
 OPENAI_API_KEY = "sk-xxxx"
 You can get the key here https://platform.openai.com/account/api-keys
+
 
 

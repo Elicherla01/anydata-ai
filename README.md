@@ -19,7 +19,8 @@ Step3:
 Rename example.env to .env
 
 Step4: In .env file set OPENAI_API_KEY as 
-OPENAI_API_KEY = "sk-xxxx"
+OPENAI_API_KEY = "sk-xxxx".
+
 You can get the key here https://platform.openai.com/account/api-keys
 
 

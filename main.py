@@ -113,8 +113,12 @@ print("source_documents", source_documents)
 
 splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=10)
 chunked_docs = splitter.split_documents(source_documents)
+#Use OPEN AI embeddings
 embedder = OpenAIEmbeddings()
+
+#create a vector Store
 vector_store = FAISS.from_documents(chunked_docs, embedder)
+
 print("vector_store:", vector_store)
 
 

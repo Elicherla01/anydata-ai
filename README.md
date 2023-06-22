@@ -23,5 +23,11 @@ OPENAI_API_KEY = "sk-xxxx".
 
 You can get the key here https://platform.openai.com/account/api-keys
 
+Step5:
+in source_data folder there are documents already. Delete the documents and upload any document thatyou like to chat
+
+Step 6:
+Run Python3 main.py
+
 
 

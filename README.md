@@ -3,6 +3,7 @@
 
 # Environment Setup
 In order to set your environment up to run the code here, first install all requirements:
+
 Step1:
 ```shell
 pip3 install -r requirements.txt

@@ -6,7 +6,7 @@ python-dotenv==1.0.0
 pypdf==3.17.0
 PyMUPDF==1.22.3
 unstructured==0.7.6
-gradio==3.35.2
+gradio==4.11.0
 openai==0.27.8
 tiktoken==0.4.0
 Cython==0.29.35
